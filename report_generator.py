@@ -1,6 +1,6 @@
 import pdfkit
 
-def generate_report(wallet_data, defi_data):
+def generate_report(wallet_data, defi_data, nft_data):
     report_md = f"# Анализ кошелька {wallet_data['wallet_address']}\n\n"
     
     report_md += "## Ethereum Транзакции:\n"
@@ -14,6 +14,10 @@ def generate_report(wallet_data, defi_data):
     report_md += "## DeFi Активность:\n"
     for defi in defi_data:
         report_md += f"- Платформа: {defi['protocol']}, Баланс: {defi['balance']}\n"
+
+    report_md += "## NFT Активность:\n"
+    for nft in nft_data:
+        report_md += f"- Коллекция: {nft['collection']}, Токен: {nft['name']}, Тип: {nft['type']}\n"
 
     # Сохранение в Markdown
     with open("reports/wallet_report.md", "w", encoding="utf-8") as f:
